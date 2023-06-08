@@ -12,7 +12,7 @@ const photographerFactory = (data) => {
     const getUserCardDOM = () => {
         //On créé les élément de la Card (Article)
         const article = document.createElement('article');
-        const pictureUrl = document.createElement('img');
+        const img = document.createElement('img');
         const h2 = document.createElement('h2');
         const location = document.createElement('p');
         const tagline = document.createElement('p');
