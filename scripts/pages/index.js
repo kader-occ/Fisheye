@@ -1,5 +1,5 @@
 //On récupere les données JSON des photographes
-async function getPhotographers() {
+const getPhotographers = async () => {
     let response = await fetch('data/photographers.json');
 
     if (response.ok) {
@@ -7,30 +7,32 @@ async function getPhotographers() {
     } else {
         alert("HTTP-Error: " + response.status);
     }
-
 }
 
 //Affiche les données JSON dans le DOM
-async function displayData(data) {
+const displayData = async (data) => {
+
     const photographersSection = document.querySelector(".photographer_section");
 
-    /*
-    // On créé un array avec des données strucutrées {photograph, [media]}
-    const datas = data.photographers.map((p) => {
-        return data.media.map((m) => {
-            console.log(p.id === m.photographerId);
-        });
-    })*/
+    //On créé un array avec les données structurées [photograph, [medias]]
+    data.photographers.map((p) => {
+        p['medias'] = data.media.filter((m) => {
+            if (m.photographerId === p.id) {
+                return m;
+            }
+        })
+    });
+
+    console.log(data.photographers);
 
     data.photographers.map((photographer) => {
-        console.log(photographer);
         const photographerModel = photographerFactory(photographer);
         const userCardDOM = photographerModel.getUserCardDOM();
         photographersSection.appendChild(userCardDOM);
     });
 };
 
-async function init() {
+const init = async () => {
     // Récupère les datas des photographes
     const photographers = await getPhotographers();
     displayData(photographers);

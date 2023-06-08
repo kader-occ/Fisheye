@@ -1,15 +1,15 @@
 // fonction Factory pour créer une Card(Article) de photographe dans le DOM
-function photographerFactory(data) {
+const photographerFactory = (data) => {
+
     const photograph = { ...data };
+    const pictureUrl = `assets/photographers/Photographers_ID_Photos/${photograph.portrait}`;
 
-    const picture = `assets/photographers/Photographers_ID_Photos/${photograph.portrait}`;
-
-    function setPhotographLocalSession(photograph, photographLink) {
-        localStorage.setItem('photograph', JSON.stringify(photograph));
-        window.location.replace(photographLink);
+    const setPhotographLocalSession = (photograph) => {
+        localStorage.setItem('_photographSession', JSON.stringify(photograph));
+        window.location.href = "photographer.html";
     }
 
-    function getUserCardDOM() {
+    const getUserCardDOM = () => {
         //On créé les élément de la Card (Article)
         const article = document.createElement('article');
         const img = document.createElement('img');
@@ -18,11 +18,8 @@ function photographerFactory(data) {
         const tagline = document.createElement('p');
         const price = document.createElement('p');
 
-        //On créé le lien dynamique vers chaque photographe
-        const photographLink = "photographer.html"
-
         //On récupere l'image du photographe
-        img.setAttribute("src", picture);
+        img.setAttribute("src", pictureUrl);
 
         //On récupere le nom du photographe
         h2.textContent = photograph.name;
@@ -39,7 +36,7 @@ function photographerFactory(data) {
         price.className = 'price';
         price.textContent = photograph.price + '€/jour';
 
-        img.onclick = () => setPhotographLocalSession(photograph, photographLink);
+        img.onclick = () => setPhotographLocalSession(photograph);
 
         //On envoi au DOM chaque element
         article.appendChild(img);
