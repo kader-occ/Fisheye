@@ -12,14 +12,14 @@ const photographerFactory = (data) => {
     const getUserCardDOM = () => {
         //On créé les élément de la Card (Article)
         const article = document.createElement('article');
-        const img = document.createElement('img');
+        const pictureUrl = document.createElement('img');
         const h2 = document.createElement('h2');
         const location = document.createElement('p');
         const tagline = document.createElement('p');
         const price = document.createElement('p');
 
         //On récupere l'image du photographe
-        img.setAttribute("src", pictureUrl);
+        pictureUrl.setAttribute("src", pictureUrl);
 
         //On récupere le nom du photographe
         h2.textContent = photograph.name;
@@ -36,7 +36,8 @@ const photographerFactory = (data) => {
         price.className = 'price';
         price.textContent = photograph.price + '€/jour';
 
-        img.onclick = () => setPhotographLocalSession(photograph);
+        //Ajout evenement clic sur l'image du photograph
+        pictureUrl.onclick = () => setPhotographLocalSession(photograph);
 
         //On envoi au DOM chaque element
         article.appendChild(img);
