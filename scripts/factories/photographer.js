@@ -19,7 +19,7 @@ const photographerFactory = (data) => {
         const price = document.createElement('p');
 
         //On récupere l'image du photographe
-        pictureUrl.setAttribute("src", pictureUrl);
+        img.setAttribute("src", pictureUrl);
 
         //On récupere le nom du photographe
         h2.textContent = photograph.name;
@@ -36,8 +36,8 @@ const photographerFactory = (data) => {
         price.className = 'price';
         price.textContent = photograph.price + '€/jour';
 
-        //Ajout evenement clic sur l'image du photograph
-        pictureUrl.onclick = () => setPhotographLocalSession(photograph);
+        //Ajout evenement sur le clic l'image du photograph
+        img.onclick = () => setPhotographLocalSession(photograph);
 
         //On envoi au DOM chaque element
         article.appendChild(img);
