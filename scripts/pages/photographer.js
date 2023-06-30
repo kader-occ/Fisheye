@@ -1,10 +1,48 @@
-//On récupère le photograph et ces médias dans la Session !
-const photographData = JSON.parse(localStorage.getItem("_photographSession"));
+window.addEventListener("load", () => {
+  displayPhotographDetails(photographData);
+});
 
+//On récupère le photograph et ces médias dans la Session et créé les chemin des dossiers!
+const photographData = JSON.parse(localStorage.getItem("_photographSession"));
+const mediaPath = `assets/photographers/${photographData.name
+  .split(" ")
+  .join("-")}/`;
+const pictureUrl = `assets/photographers/Photographers_ID_Photos/${photographData.portrait}`;
+
+//Fonction Filtre des Photos
+const filterMedias = (filterVal, mediaArr) => {
+  switch (filterVal) {
+    case "Popularité":
+      return mediaArr.sort((a, b) => {
+        return b.likes - a.likes;
+      });
+    case "Date":
+      return mediaArr.sort((a, b) => {
+        return new Date(b.date) - new Date(a.date);
+      });
+    case "Titre":
+      return mediaArr.sort((a, b) => {
+        return a.title.localeCompare(b.title);
+      });
+    default:
+      return mediaArr;
+  }
+};
+
+//Fonction Update Likes
+const updateLikes = (media) => {
+  media.likes++;
+  const likesDom = document.getElementById(`${media.id}`);
+  const totalLikesDom = document.querySelector(".total-likes");
+  likesDom.textContent = media.likes;
+  parseInt(totalLikesDom.textContent++);
+};
+
+//Fonction pour afficher les medias du photograph
 const displayMediaGallery = (medias) => {
   //On créé la Gallerie
   const photographGallery = document.querySelector("#photograph-gallery");
-  const mediaPath = `assets/photographers/${photographData.name}/`;
+  photographGallery.textContent = "";
 
   medias.map((m) => {
     const figure = document.createElement("figure");
@@ -13,15 +51,6 @@ const displayMediaGallery = (medias) => {
     const mediaLikes = document.createElement("span");
 
     figure.setAttribute("alt", m.title);
-
-    //Tab9
-    mediaInfo.tabIndex = 0;
-
-    //Tab10
-    mediaTitle.tabIndex = 0;
-
-    //Tab11
-    mediaLikes.tabIndex = 0;
 
     if (m.image) {
       const photographMediaImg = document.createElement("img");
@@ -37,11 +66,23 @@ const displayMediaGallery = (medias) => {
       figure.append(photographMediaVideo);
     }
 
+    //Tab9
+    figure.tabIndex = 9;
+
     mediaTitle.className = "media-title";
     mediaTitle.textContent = m.title;
+    //Tab10
+    mediaTitle.tabIndex = 10;
 
-    mediaLikes.className = "media-likes";
+    mediaLikes.setAttribute("aria-label", "likes");
+    mediaLikes.id = m.id;
+    mediaLikes.className = "media-likes icon-heart";
+    mediaLikes.style.cursor = "pointer";
     mediaLikes.textContent = m.likes;
+    //Tab11
+    mediaLikes.tabIndex = 11;
+
+    mediaLikes.onclick = () => updateLikes(m);
 
     mediaInfo.className = "media-info";
     mediaInfo.append(mediaTitle);
@@ -53,12 +94,8 @@ const displayMediaGallery = (medias) => {
   });
 };
 
-const displayPhotograph = (photographData) => {
-  console.log(photographData);
-
-  const pictureUrl = `assets/photographers/Photographers_ID_Photos/${photographData.portrait}`;
-
-  //On créé les élements
+const displayPhotographDetails = (photographData) => {
+  //On créé les élements DOM
   const main = document.querySelector("main");
   const photographHeader = document.querySelector(".photograph-header");
   const contactBtn = document.querySelector(".contact_button");
@@ -78,31 +115,30 @@ const displayPhotograph = (photographData) => {
   photographName.textContent = photographData.name;
 
   //Tab 2
-  photographName.tabIndex = 0;
+  photographName.tabIndex = 2;
 
   //Tab3
-  photographLocation.tabIndex = 0;
+  photographLocation.tabIndex = 3;
 
   contactBtn.setAttribute("alt", "Contact me");
   //Tab4
-  contactBtn.tabIndex = 0;
+  contactBtn.tabIndex = 4;
 
   photographImg.setAttribute("alt", photographData.name);
   //Tab5
-  photographImg.tabIndex = 0;
+  photographImg.tabIndex = 5;
 
   //Tab6
   totalLikesAndPrice.tabIndex = 6;
   totalLikesAndPrice.id = "total-likes-price";
-  totalLikes.className = "total-likes";
+  totalLikes.className = "total-likes icon-heart";
 
   let totalLikesCount = 0;
   totalLikesCount = photographData.medias.map((m) => {
-    totalLikesCount = totalLikesCount += m.likes;
-    return totalLikesCount;
+    return (totalLikesCount += m.likes);
   });
 
-  console.log(totalLikesCount);
+  totalLikes.textContent = totalLikesCount.slice(-1)[0];
 
   price.className = "price";
   price.textContent = photographData.price;
@@ -136,11 +172,12 @@ const displayPhotograph = (photographData) => {
   const photographFilter = document.querySelector("#photograph-filter");
 
   //Tab7
-  photographFilter.tabIndex = 0;
+  photographFilter.tabIndex = 7;
 
   const selectFilter = document.createElement("select");
+  selectFilter.setAttribute("aria-label", "Order by");
   //Tab8
-  selectFilter.tabIndex = 0;
+  selectFilter.tabIndex = 8;
   const filterTitle = document.createElement("span");
 
   filterTitle.className = "filter-title";
@@ -161,7 +198,11 @@ const displayPhotograph = (photographData) => {
   selectFilter.className = "select-filter";
   photographFilter.append(selectFilter);
 
-  displayMediaGallery(photographData.medias);
-};
+  mediaArr = filterMedias("", photographData.medias);
+  displayMediaGallery(mediaArr);
 
-displayPhotograph(photographData);
+  selectFilter.onchange = () => {
+    mediaArr = filterMedias(selectFilter.value, photographData.medias);
+    displayMediaGallery(mediaArr);
+  };
+};
