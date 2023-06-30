@@ -1,13 +1,16 @@
+/**
+ * Au chargement de la page on lance la fonction displayPhotographDetails;
+ */
 window.addEventListener("load", () => {
   displayPhotographDetails(photographData);
 });
 
 //On récupère le photograph et ces médias dans la Session et créé les chemin des dossiers!
 const photographData = JSON.parse(localStorage.getItem("_photographSession"));
-const mediaPath = `assets/photographers/${photographData.name
+const mediasPath = `assets/photographers/${photographData.name
   .split(" ")
   .join("-")}/`;
-const pictureUrl = `assets/photographers/Photographers_ID_Photos/${photographData.portrait}`;
+const portraitPath = `assets/photographers/Photographers_ID_Photos/${photographData.portrait}`;
 
 //Fonction Filtre des Photos
 const filterMedias = (filterVal, mediaArr) => {
@@ -54,14 +57,14 @@ const displayMediaGallery = (medias) => {
 
     if (m.image) {
       const photographMediaImg = document.createElement("img");
-      photographMediaImg.setAttribute("src", mediaPath + m.image);
+      photographMediaImg.setAttribute("src", mediasPath + m.image);
       photographMediaImg.setAttribute("alt", m.title);
       figure.append(photographMediaImg);
     } else {
       const photographMediaVideo = document.createElement("video");
       photographMediaVideo.controls = true;
       photographMediaVideo.tabIndex = -1;
-      photographMediaVideo.setAttribute("src", mediaPath + m.video);
+      photographMediaVideo.setAttribute("src", mediasPath + m.video);
       photographMediaVideo.setAttribute("alt", m.title);
       figure.append(photographMediaVideo);
     }
@@ -163,7 +166,7 @@ const displayPhotographDetails = (photographData) => {
   photographTagline.textContent = photographData.tagline;
 
   //On récupere l'image du photographe
-  photographImg.setAttribute("src", pictureUrl);
+  photographImg.setAttribute("src", portraitPath);
   photographPicture.className = "photograph-picture";
   photographPicture.append(photographImg);
   photographHeader.append(photographPicture);
