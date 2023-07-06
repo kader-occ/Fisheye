@@ -3,7 +3,7 @@ const photographerFactory = (data) => {
   const photograph = { ...data };
   const pictureUrl = `assets/photographers/Photographers_ID_Photos/${photograph.portrait}`;
 
-  const setPhotographLocalSession = (photograph) => {
+  const showPhotographDetails = (photograph) => {
     localStorage.setItem("_photographSession", JSON.stringify(photograph));
     window.location.href = "photographer.html";
   };
@@ -44,7 +44,7 @@ const photographerFactory = (data) => {
     //Ajout evenement sur le clic le Nom et l'image du photograph
     photographUrl.append(photographImg);
     photographUrl.append(photographName);
-    photographUrl.onclick = () => setPhotographLocalSession(photograph);
+    photographUrl.onclick = () => showPhotographDetails(photograph);
 
     //On envoi au DOM chaque element
     article.appendChild(photographUrl);

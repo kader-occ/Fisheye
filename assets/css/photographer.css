@@ -125,6 +125,7 @@ form input {
   color: #fff;
   border: none;
   font-weight: 700;
+  border-radius: 5px;
 }
 
 #photograph-filter .select-filter option {
@@ -143,11 +144,11 @@ form input {
 }
 
 #photograph-gallery figure img,
-video {
+#photograph-media-video {
   width: 100%;
   height: 300px;
   object-fit: cover;
-  border-radius: 6px;
+  border-radius: 5px;
 }
 
 #photograph-gallery .media-info {
