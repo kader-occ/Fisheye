@@ -1,8 +1,6 @@
 //Fonction Fermeture LightBox
 const closeLightBox = () => {
   const lightBoxDiv = document.querySelector("#light-box");
-  main.style.opacity = 1;
-  //lightBoxDiv.style.animation = "lightBoxCloseAnimtation 2s";
   lightBoxDiv.remove();
 };
 
@@ -66,6 +64,7 @@ const openLightBox = (currentMedia, medias) => {
   const btnNextMedia = document.createElement("button");
   const btnPrevMedia = document.createElement("button");
   const btnCloseLightBox = document.createElement("button");
+  const titleMedia = document.createElement("p");
 
   btnCloseLightBox.className = "btn btn-close-light-box";
   btnCloseLightBox.setAttribute("alt", "Fermer la light box");
@@ -85,6 +84,10 @@ const openLightBox = (currentMedia, medias) => {
   btnPrevMedia.textContent = "<";
 
   lightBoxDiv.id = "light-box";
+
+  //Tab1
+  lightBoxDiv.tabIndex = 0;
+
   body.append(lightBoxDiv);
 
   lightBoxDiv.append(btnCloseLightBox);
@@ -96,20 +99,60 @@ const openLightBox = (currentMedia, medias) => {
     const video = document.createElement("video");
     video.className = "media-light-box";
     video.setAttribute("src", mediaSrc);
+    video.setAttribute("alt", currentMedia.title);
+    video.ariaLabel = currentMedia.title;
     video.controls = true;
     video.autoplay = true;
     video.tabIndex = -1;
+    //Tab2
+    video.tabIndex = 1;
     lightBoxDiv.append(video);
   } else {
     const mediaSrc = mediasPath + currentMedia.image;
     const img = document.createElement("img");
     img.className = "media-light-box";
     img.setAttribute("src", mediaSrc);
+    img.setAttribute("alt", currentMedia.title);
+    img.ariaLabel = currentMedia.title;
+    //Tab2
+    img.tabIndex = 1;
     lightBoxDiv.append(img);
   }
+
+  titleMedia.className = "title-media";
+  titleMedia.textContent = currentMedia.title;
+
+  //Tab3
+  titleMedia.tabIndex = 2;
+
+  lightBoxDiv.append(titleMedia);
+
+  //Tab4
+  btnPrevMedia.tabIndex = 4;
+  btnPrevMedia.ariaLabel = "Image précedente";
+  //Tab5
+  btnNextMedia.tabIndex = 5;
+  btnNextMedia.ariaLabel = "Image suivante";
+
+  //Tab6
+  btnCloseLightBox.tabIndex = 6;
+  btnCloseLightBox.ariaLabel = "Fermer la lightbox";
 
   btnNextMedia.onclick = () => handleMediaToDisplay("next", medias);
   btnPrevMedia.onclick = () => handleMediaToDisplay("prev", medias);
 
   btnCloseLightBox.onclick = () => closeLightBox();
+
+  //Gestion des touches clavier
+  const checkKey = (ev) => {
+    if (ev.keyCode == "37") {
+      //Touche fleche gauche
+      handleMediaToDisplay("next", medias);
+    } else if (ev.keyCode == "39") {
+      //Touche fleche droite
+      handleMediaToDisplay("prev", medias);
+    }
+  };
+
+  document.onkeydown = checkKey;
 };

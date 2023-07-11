@@ -4,6 +4,7 @@
     <link href="assets/css/style.css" rel="stylesheet" type="text/css" />
     <link href="assets/css/photographer.css" rel="stylesheet" type="text/css" />
     <link rel="stylesheet" href="assets/css/light-box.css" />
+    <link rel="stylesheet" href="assets/css/contact-form.css" />
     <meta charset="utf-8" />
     <link rel="icon" type="image/png" href="assets/favicon.png" />
     <link
@@ -40,10 +41,20 @@
         </header>
         <form>
           <div>
-            <label>Prénom</label>
-            <input />
+            <label>Nom</label>
+            <input type="text" placeholder="Votre nom" id="nom_form" />
           </div>
-          <button class="contact_button">Envoyer</button>
+          <div>
+            <label>Email</label>
+            <input type="email" placeholder="Votre email" id="email_form" />
+          </div>
+          <div>
+            <label>Message</label>
+            <textarea id="message_form"></textarea>
+          </div>
+          <button type="submit" id="btn_form_submit" class="contact_button">
+            Envoyer
+          </button>
         </form>
       </div>
     </div>

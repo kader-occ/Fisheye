@@ -166,12 +166,12 @@ const displayMediaGallery = (medias) => {
     }
 
     //Tab9
-    figure.tabIndex = 9;
+    figure.tabIndex = 0;
 
     mediaTitle.className = "media-title";
     mediaTitle.textContent = m.title;
     //Tab10
-    mediaTitle.tabIndex = 10;
+    mediaTitle.tabIndex = 0;
 
     mediaLikes.setAttribute("aria-label", "likes");
     mediaLikes.id = m.id;
@@ -179,7 +179,7 @@ const displayMediaGallery = (medias) => {
     mediaLikes.style.cursor = "pointer";
     mediaLikes.textContent = m.likes;
     //Tab11
-    mediaLikes.tabIndex = 11;
+    mediaLikes.tabIndex = 0;
 
     mediaLikes.onclick = () => updateLikes(m);
 
