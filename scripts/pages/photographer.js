@@ -44,7 +44,12 @@ const displayPhotographDetails = (photographData) => {
   //Tab4
   contactBtn.tabIndex = 4;
 
+  //On récupere l'image du photographe
+  photographImg.setAttribute("src", portraitPath);
   photographImg.setAttribute("alt", photographData.name);
+  photographPicture.className = "photograph-picture";
+  photographPicture.append(photographImg);
+  photographHeader.append(photographPicture);
   //Tab5
   photographImg.tabIndex = 5;
 
@@ -82,12 +87,6 @@ const displayPhotographDetails = (photographData) => {
   photographTagline.className = "photograph-tagline";
   photographTagline.textContent = photographData.tagline;
 
-  //On récupere l'image du photographe
-  photographImg.setAttribute("src", portraitPath);
-  photographPicture.className = "photograph-picture";
-  photographPicture.append(photographImg);
-  photographHeader.append(photographPicture);
-
   //On créé le Filtre
   photographFilterDiv.id = "photograph-filter";
   main.append(photographFilterDiv);
@@ -95,19 +94,19 @@ const displayPhotographDetails = (photographData) => {
   photographGalleryDiv.id = "photograph-gallery";
   main.append(photographGalleryDiv);
 
+  const filterLabel = document.createElement("label");
+
+  filterLabel.className = "filter-label";
+  filterLabel.textContent = "Trier par";
   //Tab7
-  photographFilterDiv.tabIndex = 7;
+  filterLabel.tabIndex = 7;
 
   const selectFilter = document.createElement("select");
   selectFilter.setAttribute("aria-label", "Order by");
   //Tab8
   selectFilter.tabIndex = 8;
-  const filterTitle = document.createElement("span");
 
-  filterTitle.className = "filter-title";
-  filterTitle.textContent = "Trier par";
-
-  photographFilterDiv.append(filterTitle);
+  photographFilterDiv.append(filterLabel);
 
   let filterOptionArr = ["Popularité", "Date", "Titre"];
 
@@ -131,20 +130,19 @@ const displayPhotographDetails = (photographData) => {
   };
 };
 
-//Fonction pour afficher la gallerie des medias du photograph
+//Fonction pour afficher la galerie des medias du photograph
 const displayMediaGallery = (medias) => {
-  //On créé la Gallerie
+  //On créé la Galerie
   const photographGalleryDiv = document.querySelector("#photograph-gallery");
   photographGalleryDiv.textContent = "";
 
   medias.map((m) => {
-    const figure = document.createElement("figure");
+    const article = document.createElement("article");
     const mediaInfo = document.createElement("div");
     const mediaTitle = document.createElement("span");
     const mediaLikes = document.createElement("span");
 
-    figure.setAttribute("alt", m.title);
-    figure.style.cursor = "pointer";
+    article.style.cursor = "pointer";
 
     if (m.image) {
       const photographMediaImg = document.createElement("img");
@@ -152,7 +150,7 @@ const displayMediaGallery = (medias) => {
       photographMediaImg.setAttribute("alt", m.title);
       photographMediaImg.setAttribute("title", m.title);
       photographMediaImg.onclick = () => openLightBox(m, medias);
-      figure.append(photographMediaImg);
+      article.append(photographMediaImg);
     } else {
       const photographMediaVideo = document.createElement("video");
       photographMediaVideo.controls = false;
@@ -162,11 +160,11 @@ const displayMediaGallery = (medias) => {
       photographMediaVideo.setAttribute("alt", m.title);
       photographMediaVideo.setAttribute("title", m.title);
       photographMediaVideo.onclick = () => openLightBox(m, medias);
-      figure.append(photographMediaVideo);
+      article.append(photographMediaVideo);
     }
 
     //Tab9
-    figure.tabIndex = 0;
+    article.tabIndex = 0;
 
     mediaTitle.className = "media-title";
     mediaTitle.textContent = m.title;
@@ -187,8 +185,8 @@ const displayMediaGallery = (medias) => {
     mediaInfo.append(mediaTitle);
     mediaInfo.append(mediaLikes);
 
-    figure.append(mediaInfo);
+    article.append(mediaInfo);
 
-    photographGalleryDiv.append(figure);
+    photographGalleryDiv.append(article);
   });
 };

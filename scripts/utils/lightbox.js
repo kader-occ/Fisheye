@@ -128,14 +128,14 @@ const openLightBox = (currentMedia, medias) => {
   lightBoxDiv.append(titleMedia);
 
   //Tab4
-  btnPrevMedia.tabIndex = 4;
+  btnPrevMedia.tabIndex = 3;
   btnPrevMedia.ariaLabel = "Image précedente";
   //Tab5
-  btnNextMedia.tabIndex = 5;
+  btnNextMedia.tabIndex = 4;
   btnNextMedia.ariaLabel = "Image suivante";
 
   //Tab6
-  btnCloseLightBox.tabIndex = 6;
+  btnCloseLightBox.tabIndex = 5;
   btnCloseLightBox.ariaLabel = "Fermer la lightbox";
 
   btnNextMedia.onclick = () => handleMediaToDisplay("next", medias);
