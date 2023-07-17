@@ -8,6 +8,7 @@ const closeLightBox = () => {
 const handleMediaToDisplay = (action, medias) => {
   const currentMediaLightBox = document.querySelector(".media-light-box");
   const currentMediaFile = currentMediaLightBox.src.split("/").pop();
+  const titleMedia = document.querySelector(".title-media");
 
   const currentMedia = medias.find((m) => {
     if (m.image) {
@@ -36,8 +37,11 @@ const handleMediaToDisplay = (action, medias) => {
   }
 
   currentMediaLightBox.remove();
+  titleMedia.remove();
 
   const lightBoxDiv = document.querySelector("#light-box");
+  const titleMediaToDisplay = document.createElement("p");
+  titleMediaToDisplay.className = "title-media";
 
   if (mediaToDisplay.image) {
     const mediaSrc = mediasPath + mediaToDisplay.image;
@@ -55,6 +59,9 @@ const handleMediaToDisplay = (action, medias) => {
     video.tabIndex = -1;
     lightBoxDiv.append(video);
   }
+
+  titleMediaToDisplay.textContent = mediaToDisplay.title;
+  lightBoxDiv.append(titleMediaToDisplay);
 };
 
 //Fonction Ouverture LightBox
