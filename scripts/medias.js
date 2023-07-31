@@ -47,6 +47,7 @@ const displayMediaGallery = (medias) => {
       photographMediaImg.setAttribute("src", mediasPath + m.image);
       photographMediaImg.setAttribute("alt", m.title);
       photographMediaImg.setAttribute("title", m.title);
+      photographMediaImg.onclick = () => openLightBox(m, medias);
       figure.append(photographMediaImg);
     } else {
       const photographMediaVideo = document.createElement("video");
@@ -56,12 +57,12 @@ const displayMediaGallery = (medias) => {
       photographMediaVideo.setAttribute("src", mediasPath + m.video);
       photographMediaVideo.setAttribute("alt", m.title);
       photographMediaVideo.setAttribute("title", m.title);
+      photographMediaVideo.onclick = () => openLightBox(m, medias);
       figure.append(photographMediaVideo);
     }
 
     //Tab9
     figure.tabIndex = 9;
-    figure.onclick = () => openLightBox(m, medias);
 
     mediaTitle.className = "media-title";
     mediaTitle.textContent = m.title;

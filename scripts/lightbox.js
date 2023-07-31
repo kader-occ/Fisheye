@@ -7,13 +7,22 @@ const closeLightBox = () => {
 };
 
 //Fonction Media suivant
-const nextMedia = (ev) => {
-  console.log(ev);
+const nextMedia = (currentIndex, medias) => {
+  console.log(currentIndex);
+  let index = currentIndex + 1;
+  let currentMedia = medias[index];
+  let mediaSrc = mediasPath + currentMedia.image;
+  const img = document.querySelector("#light-box-img");
+  img.setAttribute("src", mediaSrc);
 };
 
 //Fonction Media précedent
-const prevMedia = (ev) => {
-  console.log(ev);
+const prevMedia = (currentIndex, medias) => {
+  let index = currentIndex - 1;
+  let currentMedia = medias[index];
+  let mediaSrc = mediasPath + currentMedia.image;
+  const img = document.querySelector("#light-box-img");
+  img.setAttribute("src", mediaSrc);
 };
 
 //Fonction Ouverture LightBox
@@ -30,6 +39,7 @@ const openLightBox = (currentMedia, medias) => {
   const btnPrevMedia = document.createElement("button");
   const btnCloseLightBox = document.createElement("button");
 
+  lightBoxDiv.id = "light-box";
   btnCloseLightBox.className = "btn btn-close-light-box";
   btnCloseLightBox.setAttribute("alt", "Fermer la light box");
   btnCloseLightBox.setAttribute("title", "Fermer la light box");
@@ -53,8 +63,10 @@ const openLightBox = (currentMedia, medias) => {
 
   btnCloseLightBox.onclick = () => closeLightBox();
 
-  btnNextMedia.onclick = (ev) => nextMedia(ev);
-  btnPrevMedia.onclick = (ev) => prevMedia(ev);
+  let currentIndex = medias.indexOf(currentMedia);
+
+  btnNextMedia.onclick = () => nextMedia(currentIndex, medias);
+  btnPrevMedia.onclick = () => prevMedia(currentIndex, medias);
 
   lightBoxDiv.append(btnCloseLightBox);
   lightBoxDiv.append(btnNextMedia);
@@ -62,12 +74,14 @@ const openLightBox = (currentMedia, medias) => {
 
   if (ext === "mp4") {
     const video = document.createElement("video");
+    video.id = "light-box-video";
     video.setAttribute("src", mediaSrc);
     video.controls = true;
     video.tabIndex = -1;
     lightBoxDiv.append(video);
   } else {
     const img = document.createElement("img");
+    img.id = "light-box-img";
     img.setAttribute("src", mediaSrc);
     lightBoxDiv.append(img);
   }
