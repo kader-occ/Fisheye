@@ -132,6 +132,24 @@ const openLightBox = (currentMedia, medias) => {
   //Tab3
   titleMedia.tabIndex = 2;
 
+  lightBoxDiv.append(titleMedia);
+
+  //LightBox Navigation et touches clavier
+
+  //Tab4
+  btnPrevMedia.tabIndex = 3;
+  btnPrevMedia.ariaLabel = "Image précedente";
+  btnPrevMedia.onclick = () => handleMediaToDisplay("prev", medias);
+  //Tab5
+  btnNextMedia.tabIndex = 4;
+  btnNextMedia.ariaLabel = "Image suivante";
+  btnNextMedia.focus();
+  btnNextMedia.onclick = () => handleMediaToDisplay("next", medias);
+
+  //Tab6
+  btnCloseLightBox.tabIndex = 5;
+  btnCloseLightBox.ariaLabel = "Fermer la lightbox";
+  btnCloseLightBox.onclick = () => closeLightBox();
   lightBoxDiv.addEventListener("keypress", (ev) => {
     console.log(ev.key);
     if (ev.key === "Escape") {
@@ -139,27 +157,6 @@ const openLightBox = (currentMedia, medias) => {
     }
   });
 
-  lightBoxDiv.append(titleMedia);
-
-  //LightBox Navigation
-
-  //Tab4
-  btnPrevMedia.tabIndex = 3;
-  btnPrevMedia.ariaLabel = "Image précedente";
-  //Tab5
-  btnNextMedia.tabIndex = 4;
-  btnNextMedia.ariaLabel = "Image suivante";
-
-  //Tab6
-  btnCloseLightBox.tabIndex = 5;
-  btnCloseLightBox.ariaLabel = "Fermer la lightbox";
-
-  btnNextMedia.onclick = () => handleMediaToDisplay("next", medias);
-  btnPrevMedia.onclick = () => handleMediaToDisplay("prev", medias);
-
-  btnCloseLightBox.onclick = () => closeLightBox();
-
-  //Gestion des touches clavier
   const checkKey = (ev) => {
     if (ev.keyCode == "37") {
       //Touche fleche gauche
