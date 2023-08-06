@@ -132,7 +132,16 @@ const openLightBox = (currentMedia, medias) => {
   //Tab3
   titleMedia.tabIndex = 2;
 
+  lightBoxDiv.addEventListener("keypress", (ev) => {
+    console.log(ev.key);
+    if (ev.key === "Escape") {
+      closeLightBox();
+    }
+  });
+
   lightBoxDiv.append(titleMedia);
+
+  //LightBox Navigation
 
   //Tab4
   btnPrevMedia.tabIndex = 3;

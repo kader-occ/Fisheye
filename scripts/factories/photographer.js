@@ -23,6 +23,8 @@ const photographerFactory = (data) => {
 
     //On récupere l'image du photographe
     photographImg.setAttribute("src", pictureUrl);
+    photographImg.setAttribute("alt", photograph.name);
+    photographImg.setAttribute("title", photograph.name);
 
     //On récupere le nom du photographe
     photographName.textContent = photograph.name;
@@ -44,7 +46,14 @@ const photographerFactory = (data) => {
     //Ajout evenement sur le clic le Nom et l'image du photograph
     photographUrl.append(photographImg);
     photographUrl.append(photographName);
+
     photographUrl.onclick = () => showPhotographDetails(photograph);
+
+    photographUrl.addEventListener("keypress", (ev) => {
+      if (ev.key === "Enter") {
+        showPhotographDetails(photograph);
+      }
+    });
 
     //On envoi au DOM chaque element
     article.appendChild(photographUrl);

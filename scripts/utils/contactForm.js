@@ -31,6 +31,7 @@ const displayModal = () => {
   labelPrenom.tabIndex = 0;
   inputPrenom.id = "prenom_form";
   inputPrenom.placeholder = "Votre prénom";
+  inputPrenom.focus();
   //tab4
   inputPrenom.tabIndex = 0;
 
@@ -86,6 +87,8 @@ const displayModal = () => {
       "Email : " + inputEmail.value,
       "Message : " + textAreaMessage.value
     );
+
+    closeModal();
   });
 };
 
