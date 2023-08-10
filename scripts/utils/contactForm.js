@@ -25,45 +25,51 @@ const displayModal = () => {
 
   h2.textContent = "Contactez moi " + photographData.name;
   //tab2
-  h2.tabIndex = 0;
+  h2.tabIndex = 1;
 
   //tab3
-  labelPrenom.tabIndex = 0;
+  labelPrenom.tabIndex = 2;
   inputPrenom.id = "prenom_form";
   inputPrenom.placeholder = "Votre prénom";
   inputPrenom.focus();
   //tab4
-  inputPrenom.tabIndex = 0;
+  inputPrenom.tabIndex = 3;
 
   labelNom.textContent = "Nom";
   //tab5
-  labelNom.tabIndex = 0;
+  labelNom.tabIndex = 4;
   inputNom.id = "nom_form";
   inputNom.placeholder = "Votre nom";
   //tab6
-  inputNom.tabIndex = 0;
+  inputNom.tabIndex = 5;
 
   labelEmail.textContent = "Email";
   //tab7
-  labelEmail.tabIndex = 0;
+  labelEmail.tabIndex = 6;
   inputEmail.id = "email_form";
   inputEmail.placeholder = "Votre email";
   //tab8
-  inputEmail.tabIndex = 0;
+  inputEmail.tabIndex = 7;
 
   labelMessage.textContent = "Message";
   //tab9
-  labelMessage.tabIndex = 0;
+  labelMessage.tabIndex = 8;
   textAreaMessage.id = "message_form";
   textAreaMessage.placeholder = "Votre message";
   //tab10
-  textAreaMessage.tabIndex = 0;
+  textAreaMessage.tabIndex = 9;
 
   //tab11
-  buttonSubmit.tabIndex = 0;
+  buttonSubmit.tabIndex = 10;
 
   //tab12
-  imgBtnCloseModal.tabIndex = 0;
+  imgBtnCloseModal.tabIndex = 11;
+
+  imgBtnCloseModal.addEventListener("keypress", (ev) => {
+    if (ev.key === "Enter") {
+      closeModal();
+    }
+  });
 
   divNom.append(labelNom);
   divNom.append(inputNom);

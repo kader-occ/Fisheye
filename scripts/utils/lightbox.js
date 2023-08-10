@@ -150,9 +150,8 @@ const openLightBox = (currentMedia, medias) => {
   btnCloseLightBox.tabIndex = 5;
   btnCloseLightBox.ariaLabel = "Fermer la lightbox";
   btnCloseLightBox.onclick = () => closeLightBox();
-  lightBoxDiv.addEventListener("keypress", (ev) => {
-    console.log(ev.key);
-    if (ev.key === "Escape") {
+  btnCloseLightBox.addEventListener("keypress", (ev) => {
+    if (ev.key === "Enter") {
       closeLightBox();
     }
   });
