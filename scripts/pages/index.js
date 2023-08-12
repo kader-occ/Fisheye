@@ -14,10 +14,10 @@ const displayData = async (data) => {
   const photographersSection = document.querySelector(".photographer_section");
 
   //On créé un array avec les données structurées [photograph, [medias]]
-  data.photographers.map((p) => {
-    p["medias"] = data.media.filter((m) => {
-      if (m.photographerId === p.id) {
-        return m;
+  data.photographers.map((photographer) => {
+    photographer["medias"] = data.media.filter((media) => {
+      if (media.photographerId === photographer.id) {
+        return media;
       }
     });
   });

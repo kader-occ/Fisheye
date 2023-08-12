@@ -136,8 +136,9 @@ const displayMediaGallery = (medias) => {
   const photographGalleryDiv = document.querySelector("#photograph-gallery");
   photographGalleryDiv.textContent = "";
 
-  medias.map((m) => {
-    const mediaGalleryModel = mediaGalleryFactory(m, medias);
-    photographGalleryDiv.append(mediaGalleryModel);
+  medias.map((media) => {
+    const mediaGalleryModel = mediaGalleryFactory(media, medias);
+    const mediaGalleryCard = mediaGalleryModel.getMediaCard();
+    photographGalleryDiv.append(mediaGalleryCard);
   });
 };
