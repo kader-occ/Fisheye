@@ -12,10 +12,10 @@ const mediaGalleryFactory = (media, medias) => {
       photographMediaImg.setAttribute("src", mediasPath + media.image);
       photographMediaImg.setAttribute("alt", media.title);
       photographMediaImg.setAttribute("title", media.title);
-      photographMediaImg.onclick = () => openLightBox(m, medias);
+      photographMediaImg.onclick = () => openLightBox(media, medias);
       photographMediaImg.addEventListener("keypress", (ev) => {
         if (ev.key === "Enter") {
-          openLightBox(m, medias);
+          openLightBox(media, medias);
         }
       });
       //Tab9
@@ -29,10 +29,10 @@ const mediaGalleryFactory = (media, medias) => {
       photographMediaVideo.setAttribute("src", mediasPath + media.video);
       photographMediaVideo.setAttribute("alt", media.title);
       photographMediaVideo.setAttribute("title", media.title);
-      photographMediaVideo.onclick = () => openLightBox(m, medias);
+      photographMediaVideo.onclick = () => openLightBox(media, medias);
       photographMediaVideo.addEventListener("keypress", (ev) => {
         if (ev.key === "Enter") {
-          openLightBox(m, medias);
+          openLightBox(media, medias);
         }
       });
       //Tab9
@@ -53,10 +53,10 @@ const mediaGalleryFactory = (media, medias) => {
     //Tab11
     mediaLikes.tabIndex = 0;
 
-    mediaLikes.onclick = () => updateLikes(m);
+    mediaLikes.onclick = () => updateLikes(media);
     mediaLikes.addEventListener("keypress", (ev) => {
       if (ev.key === "Enter") {
-        updateLikes(m);
+        updateLikes(media);
       }
     });
 
