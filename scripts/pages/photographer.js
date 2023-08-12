@@ -138,7 +138,7 @@ const displayMediaGallery = (medias) => {
 
   medias.map((media) => {
     const mediaGalleryModel = mediaGalleryFactory(media, medias);
-    const mediaGalleryCard = mediaGalleryModel.getMediaCard();
+    const mediaGalleryCard = mediaGalleryModel.getMediaCardDOM();
     photographGalleryDiv.append(mediaGalleryCard);
   });
 };

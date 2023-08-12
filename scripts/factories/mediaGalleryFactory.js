@@ -1,5 +1,5 @@
 const mediaGalleryFactory = (media, medias) => {
-  const getMediaCard = () => {
+  const getMediaCardDOM = () => {
     const article = document.createElement("article");
     const mediaInfo = document.createElement("div");
     const mediaTitle = document.createElement("span");
@@ -68,5 +68,5 @@ const mediaGalleryFactory = (media, medias) => {
     return article;
   };
 
-  return { media, getMediaCard };
+  return { media, getMediaCardDOM };
 };
