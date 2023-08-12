@@ -137,7 +137,7 @@ const displayMediaGallery = (medias) => {
   photographGalleryDiv.textContent = "";
 
   medias.map((m) => {
-    const galleryMediaModel = mediaGalleryFactory(m, medias);
-    photographGalleryDiv.append(galleryMediaModel);
+    const mediaGalleryModel = mediaGalleryFactory(m, medias);
+    photographGalleryDiv.append(mediaGalleryModel);
   });
 };

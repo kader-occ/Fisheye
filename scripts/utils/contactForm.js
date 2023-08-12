@@ -1,15 +1,18 @@
 const displayModal = () => {
-  const modal = document.getElementById("contact_modal");
-  modal.style.display = "block";
+  const contactModal = document.getElementById("contact_modal");
+  contactModal.style.display = "block";
 
   //tab1
-  modal.role = "dialog";
-  modal.tabIndex = 0;
-  modal.setAttribute("aria-label", "Contactez moi " + photographData.name);
-  modal.setAttribute("aria-hidden", "true");
+  contactModal.role = "dialog";
+  contactModal.tabIndex = 0;
+  contactModal.setAttribute(
+    "aria-label",
+    "Contactez moi " + photographData.name
+  );
+  contactModal.setAttribute("aria-hidden", "true");
 
   const h2 = document.querySelector("h2");
-  const imgBtnCloseModal = h2.nextElementSibling;
+  const imgBtnCloseContactModal = h2.nextElementSibling;
   const inputPrenom = document.querySelector("input");
   const labelPrenom = document.querySelector("label");
   const divNom = document.createElement("div");
@@ -63,11 +66,17 @@ const displayModal = () => {
   buttonSubmit.tabIndex = 10;
 
   //tab12
-  imgBtnCloseModal.tabIndex = 11;
+  imgBtnCloseContactModal.tabIndex = 11;
 
-  imgBtnCloseModal.addEventListener("keypress", (ev) => {
+  imgBtnCloseContactModal.addEventListener("keypress", (ev) => {
     if (ev.key === "Enter") {
-      closeModal();
+      closeContactModal();
+    }
+  });
+
+  contactModal.addEventListener("keyup", (ev) => {
+    if (ev.key === "Escape") {
+      closeContactModal();
     }
   });
 
@@ -94,11 +103,11 @@ const displayModal = () => {
       "Message : " + textAreaMessage.value
     );
 
-    closeModal();
+    closeContactModal();
   });
 };
 
-const closeModal = () => {
+const closeContactModal = () => {
   const modal = document.getElementById("contact_modal");
   modal.style.display = "none";
 };

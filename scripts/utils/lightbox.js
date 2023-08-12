@@ -156,6 +156,12 @@ const openLightBox = (currentMedia, medias) => {
     }
   });
 
+  lightBoxDiv.addEventListener("keyup", (ev) => {
+    if (ev.key === "Escape") {
+      closeLightBox();
+    }
+  });
+
   const checkKey = (ev) => {
     if (ev.keyCode == "37") {
       //Touche fleche gauche
