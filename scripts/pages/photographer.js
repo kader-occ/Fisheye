@@ -12,6 +12,10 @@ window.addEventListener("load", () => {
   displayPhotographDetails(photographData);
 });
 
+/**
+ * Fonction pour afficher les détails du photographe
+ * @param {Array} photographData
+ */
 const displayPhotographDetails = (photographData) => {
   //On créé les élements DOM
   const main = document.querySelector("main");
@@ -35,14 +39,14 @@ const displayPhotographDetails = (photographData) => {
   photographName.textContent = photographData.name;
 
   //Tab 2
-  photographName.tabIndex = 2;
+  photographName.tabIndex = 0;
 
   //Tab3
-  photographLocation.tabIndex = 3;
+  photographLocation.tabIndex = 0;
 
   contactBtn.setAttribute("alt", "Contact me");
   //Tab4
-  contactBtn.tabIndex = 4;
+  contactBtn.tabIndex = 0;
 
   //On récupere l'image du photographe
   photographImg.setAttribute("src", portraitPath);
@@ -51,10 +55,10 @@ const displayPhotographDetails = (photographData) => {
   photographPicture.append(photographImg);
   photographHeader.append(photographPicture);
   //Tab5
-  photographImg.tabIndex = 5;
+  photographImg.tabIndex = 0;
 
   //Tab6
-  totalLikesAndPrice.tabIndex = 6;
+  totalLikesAndPrice.tabIndex = 0;
   totalLikesAndPrice.id = "total-likes-price";
   totalLikes.className = "total-likes icon-heart";
 
@@ -99,12 +103,12 @@ const displayPhotographDetails = (photographData) => {
   filterLabel.className = "filter-label";
   filterLabel.textContent = "Trier par";
   //Tab7
-  filterLabel.tabIndex = 7;
+  filterLabel.tabIndex = 0;
 
   const selectFilter = document.createElement("select");
   selectFilter.setAttribute("aria-label", "Order by");
   //Tab8
-  selectFilter.tabIndex = 8;
+  selectFilter.tabIndex = 0;
 
   photographFilterDiv.append(filterLabel);
 
@@ -130,7 +134,10 @@ const displayPhotographDetails = (photographData) => {
   };
 };
 
-//Fonction pour afficher la galerie des medias du photograph
+/**
+ * Fonction pour afficher la galerie des medias du photograph
+ * @param {*} medias
+ */
 const displayMediaGallery = (medias) => {
   //On créé la Galerie
   const photographGalleryDiv = document.querySelector("#photograph-gallery");

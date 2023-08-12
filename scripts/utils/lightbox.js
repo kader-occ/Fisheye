@@ -1,10 +1,16 @@
-//Fonction Fermeture LightBox
+/**
+ * Fonction Fermeture LightBox
+ */
 const closeLightBox = () => {
   const lightBoxDiv = document.querySelector("#light-box");
   lightBoxDiv.remove();
 };
 
-//Fonction Navigation LightBox Media
+/**
+ * Fonction Navigation LightBox Media
+ * @param {string} action
+ * @param {Array} medias
+ */
 const handleMediaToDisplay = (action, medias) => {
   const currentMediaLightBox = document.querySelector(".media-light-box");
   const currentMediaFile = currentMediaLightBox.src.split("/").pop();
@@ -64,8 +70,12 @@ const handleMediaToDisplay = (action, medias) => {
   lightBoxDiv.append(titleMediaToDisplay);
 };
 
-//Fonction Ouverture LightBox
-const openLightBox = (currentMedia, medias) => {
+/**
+ * Fonction Affiche LightBox
+ * @param {Object} currentMedia
+ * @param {Array} medias
+ */
+const displayLightBox = (currentMedia, medias) => {
   const body = document.querySelector("body");
   const lightBoxDiv = document.createElement("div");
   const btnNextMedia = document.createElement("button");
@@ -93,13 +103,10 @@ const openLightBox = (currentMedia, medias) => {
   lightBoxDiv.id = "light-box";
 
   //Tab1
-  lightBoxDiv.tabIndex = 0;
+  lightBoxDiv.tabIndex = 1;
 
   body.append(lightBoxDiv);
-
-  lightBoxDiv.append(btnCloseLightBox);
-  lightBoxDiv.append(btnNextMedia);
-  lightBoxDiv.append(btnPrevMedia);
+  lightBoxDiv.focus();
 
   if (currentMedia.video) {
     const mediaSrc = mediasPath + currentMedia.video;
@@ -108,11 +115,11 @@ const openLightBox = (currentMedia, medias) => {
     video.setAttribute("src", mediaSrc);
     video.setAttribute("alt", currentMedia.title);
     video.ariaLabel = currentMedia.title;
-    video.controls = true;
+    video.controls = false;
     video.autoplay = true;
     video.tabIndex = -1;
     //Tab2
-    video.tabIndex = 1;
+    video.tabIndex = 2;
     lightBoxDiv.append(video);
   } else {
     const mediaSrc = mediasPath + currentMedia.image;
@@ -122,7 +129,7 @@ const openLightBox = (currentMedia, medias) => {
     img.setAttribute("alt", currentMedia.title);
     img.ariaLabel = currentMedia.title;
     //Tab2
-    img.tabIndex = 1;
+    img.tabIndex = 2;
     lightBoxDiv.append(img);
   }
 
@@ -130,24 +137,23 @@ const openLightBox = (currentMedia, medias) => {
   titleMedia.textContent = currentMedia.title;
 
   //Tab3
-  titleMedia.tabIndex = 2;
+  titleMedia.tabIndex = 3;
 
   lightBoxDiv.append(titleMedia);
 
   //LightBox Navigation et touches clavier
 
   //Tab4
-  btnPrevMedia.tabIndex = 3;
+  btnPrevMedia.tabIndex = 4;
   btnPrevMedia.ariaLabel = "Image précedente";
   btnPrevMedia.onclick = () => handleMediaToDisplay("prev", medias);
   //Tab5
-  btnNextMedia.tabIndex = 4;
+  btnNextMedia.tabIndex = 5;
   btnNextMedia.ariaLabel = "Image suivante";
-  btnNextMedia.focus();
   btnNextMedia.onclick = () => handleMediaToDisplay("next", medias);
 
   //Tab6
-  btnCloseLightBox.tabIndex = 5;
+  btnCloseLightBox.tabIndex = 6;
   btnCloseLightBox.ariaLabel = "Fermer la lightbox";
   btnCloseLightBox.onclick = () => closeLightBox();
   btnCloseLightBox.addEventListener("keypress", (ev) => {
@@ -155,6 +161,10 @@ const openLightBox = (currentMedia, medias) => {
       closeLightBox();
     }
   });
+
+  lightBoxDiv.append(btnCloseLightBox);
+  lightBoxDiv.append(btnNextMedia);
+  lightBoxDiv.append(btnPrevMedia);
 
   lightBoxDiv.addEventListener("keyup", (ev) => {
     if (ev.key === "Escape") {

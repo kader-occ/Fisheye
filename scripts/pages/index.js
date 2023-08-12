@@ -1,4 +1,7 @@
-//On récupere les données JSON des photographes
+/**
+ * Fonction récupere les données JSON des photographes
+ * @returns void
+ */
 const getPhotographers = async () => {
   let response = await fetch("data/photographers.json");
 
@@ -9,7 +12,10 @@ const getPhotographers = async () => {
   }
 };
 
-//Affiche les données JSON dans le DOM
+/**
+ * Affiche les données JSON dans le DOM
+ * @param {Array} data
+ */
 const displayData = async (data) => {
   const photographersSection = document.querySelector(".photographer_section");
 

@@ -1,24 +1,28 @@
+/**
+ * Fonction Affiche Contact Form
+ */
 const displayModal = () => {
   const contactModal = document.getElementById("contact_modal");
   contactModal.style.display = "block";
 
-  //tab1
+  //Tab1
   contactModal.role = "dialog";
-  contactModal.tabIndex = 0;
+  contactModal.tabIndex = 1;
   contactModal.setAttribute(
     "aria-label",
     "Contactez moi " + photographData.name
   );
   contactModal.setAttribute("aria-hidden", "true");
+  contactModal.focus();
 
   const h2 = document.querySelector("h2");
   const imgBtnCloseContactModal = h2.nextElementSibling;
+  const labelPrenom = document.getElementsByTagName("label")[1];
   const inputPrenom = document.querySelector("input");
-  const labelPrenom = document.querySelector("label");
   const divNom = document.createElement("div");
   const divEmail = document.createElement("div");
   const divMessage = document.createElement("div");
-  const buttonSubmit = document.querySelector("button[type=submit]");
+  const buttonSubmitFormContact = document.querySelector("button[type=submit]");
   const labelNom = document.createElement("label");
   const labelEmail = document.createElement("label");
   const labelMessage = document.createElement("label");
@@ -27,46 +31,89 @@ const displayModal = () => {
   const textAreaMessage = document.createElement("textarea");
 
   h2.textContent = "Contactez moi " + photographData.name;
-  //tab2
-  h2.tabIndex = 1;
+  //Tab2
+  h2.tabIndex = 2;
 
-  //tab3
-  labelPrenom.tabIndex = 2;
+  labelPrenom.id = "prenom_form";
+  //Tab3
+  labelPrenom.tabIndex = 3;
   inputPrenom.id = "prenom_form";
   inputPrenom.placeholder = "Votre prénom";
-  inputPrenom.focus();
-  //tab4
-  inputPrenom.tabIndex = 3;
+  //Tab4
+  inputPrenom.tabIndex = 4;
 
   labelNom.textContent = "Nom";
-  //tab5
-  labelNom.tabIndex = 4;
+  labelNom.id = "nom_form";
+  //Tab5
+  labelNom.tabIndex = 5;
   inputNom.id = "nom_form";
   inputNom.placeholder = "Votre nom";
-  //tab6
-  inputNom.tabIndex = 5;
+  //Tab6
+  inputNom.tabIndex = 6;
 
   labelEmail.textContent = "Email";
-  //tab7
-  labelEmail.tabIndex = 6;
+  labelEmail.id = "email_form";
+  //Tab7
+  labelEmail.tabIndex = 7;
   inputEmail.id = "email_form";
   inputEmail.placeholder = "Votre email";
-  //tab8
-  inputEmail.tabIndex = 7;
+  //Tab8
+  inputEmail.tabIndex = 8;
 
   labelMessage.textContent = "Message";
-  //tab9
-  labelMessage.tabIndex = 8;
+  labelMessage.id = "messafe_form";
+  //Tab9
+  labelMessage.tabIndex = 9;
   textAreaMessage.id = "message_form";
   textAreaMessage.placeholder = "Votre message";
-  //tab10
-  textAreaMessage.tabIndex = 9;
+  //Tab10
+  textAreaMessage.tabIndex = 10;
 
-  //tab11
-  buttonSubmit.tabIndex = 10;
+  //Tab11
+  buttonSubmitFormContact.tabIndex = 11;
 
-  //tab12
-  imgBtnCloseContactModal.tabIndex = 11;
+  //Tab12
+  imgBtnCloseContactModal.setAttribute("alt", "Close contact modal");
+  imgBtnCloseContactModal.tabIndex = 12;
+
+  divNom.append(labelNom);
+  divNom.append(inputNom);
+
+  divEmail.append(labelEmail);
+  divEmail.append(inputEmail);
+
+  divMessage.append(labelMessage);
+  divMessage.append(textAreaMessage);
+
+  buttonSubmitFormContact.before(divNom);
+  buttonSubmitFormContact.before(divEmail);
+  buttonSubmitFormContact.before(divMessage);
+
+  buttonSubmitFormContact.addEventListener("click", (ev) => {
+    ev.preventDefault();
+    const dataForm = {
+      "Prénom : ": inputPrenom.value,
+      "Nom : ": inputNom.value,
+      "Email : ": inputEmail.value,
+      "Message : ": textAreaMessage.value,
+    };
+    logFormData(dataForm);
+    closeContactModal();
+  });
+
+  buttonSubmitFormContact.addEventListener("keyup", (ev) => {
+    ev.preventDefault();
+    if (ev.key === "Enter") {
+      const dataForm = {
+        "Prénom : ": inputPrenom.value,
+        "Nom : ": inputNom.value,
+        "Email : ": inputEmail.value,
+        "Message : ": textAreaMessage.value,
+      };
+      logFormData(dataForm);
+      closeContactModal();
+    }
+  });
 
   imgBtnCloseContactModal.addEventListener("keypress", (ev) => {
     if (ev.key === "Enter") {
@@ -79,34 +126,19 @@ const displayModal = () => {
       closeContactModal();
     }
   });
-
-  divNom.append(labelNom);
-  divNom.append(inputNom);
-
-  divEmail.append(labelEmail);
-  divEmail.append(inputEmail);
-
-  divMessage.append(labelMessage);
-  divMessage.append(textAreaMessage);
-
-  buttonSubmit.before(divNom);
-  buttonSubmit.before(divEmail);
-  buttonSubmit.before(divMessage);
-
-  buttonSubmit.addEventListener("click", (ev) => {
-    ev.preventDefault();
-
-    console.log(
-      "Prénom : " + inputPrenom.value,
-      "Nom : " + inputNom.value,
-      "Email : " + inputEmail.value,
-      "Message : " + textAreaMessage.value
-    );
-
-    closeContactModal();
-  });
 };
 
+/**
+ * Log le formulaire
+ * @param {Object} dataForm
+ */
+const logFormData = (dataForm) => {
+  console.log(dataForm);
+};
+
+/**
+ * Ferme la modal
+ */
 const closeContactModal = () => {
   const modal = document.getElementById("contact_modal");
   modal.style.display = "none";

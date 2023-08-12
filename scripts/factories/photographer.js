@@ -1,4 +1,8 @@
-// fonction Factory pour créer une Card(Article) de photographe dans le DOM
+/**
+ * Fonction Factory pour créer un photographe dans le DOM
+ * @param {Array} data
+ * @returns
+ */
 const photographerFactory = (data) => {
   const photograph = { ...data };
   const pictureUrl = `assets/photographers/Photographers_ID_Photos/${photograph.portrait}`;
@@ -8,6 +12,10 @@ const photographerFactory = (data) => {
     window.location.href = "photographer.html";
   };
 
+  /**
+   * Fonction Factory pour créer une Card(Article) de photographe dans le DOM
+   * @returns HTMLElement
+   */
   const getUserCardDOM = () => {
     //On créé les élément de la Card (Article)
     const article = document.createElement("article");
