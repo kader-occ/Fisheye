@@ -19,7 +19,7 @@ const mediaGalleryFactory = (media, medias) => {
         }
       });
       //Tab9
-      photographMediaImg.tabIndex = 0;
+      photographMediaImg.tabIndex = 9;
       article.append(photographMediaImg);
     } else {
       const photographMediaVideo = document.createElement("video");
@@ -36,14 +36,14 @@ const mediaGalleryFactory = (media, medias) => {
         }
       });
       //Tab9
-      photographMediaVideo.tabIndex = 0;
+      photographMediaVideo.tabIndex = 9;
       article.append(photographMediaVideo);
     }
 
     mediaTitle.className = "media-title";
     mediaTitle.textContent = media.title;
     //Tab10
-    mediaTitle.tabIndex = 0;
+    mediaTitle.tabIndex = 10;
 
     mediaLikes.setAttribute("aria-label", "likes");
     mediaLikes.id = media.id;
@@ -51,7 +51,7 @@ const mediaGalleryFactory = (media, medias) => {
     mediaLikes.style.cursor = "pointer";
     mediaLikes.textContent = media.likes;
     //Tab11
-    mediaLikes.tabIndex = 0;
+    mediaLikes.tabIndex = 11;
 
     mediaLikes.onclick = () => updateLikes(media);
     mediaLikes.addEventListener("keypress", (ev) => {
