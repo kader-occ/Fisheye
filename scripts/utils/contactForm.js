@@ -48,6 +48,7 @@ const displayModal = () => {
   labelNom.tabIndex = 5;
   inputNom.id = "nom_form";
   inputNom.placeholder = "Votre nom";
+  inputEmail.required = true;
   //Tab6
   inputNom.tabIndex = 6;
 
@@ -57,6 +58,7 @@ const displayModal = () => {
   labelEmail.tabIndex = 7;
   inputEmail.id = "email_form";
   inputEmail.placeholder = "Votre email";
+  inputEmail.required = true;
   //Tab8
   inputEmail.tabIndex = 8;
 
@@ -66,6 +68,7 @@ const displayModal = () => {
   labelMessage.tabIndex = 9;
   textAreaMessage.id = "message_form";
   textAreaMessage.placeholder = "Votre message";
+  textAreaMessage.required = true;
   //Tab10
   textAreaMessage.tabIndex = 10;
 
@@ -76,12 +79,15 @@ const displayModal = () => {
   imgBtnCloseContactModal.setAttribute("alt", "Close contact modal");
   imgBtnCloseContactModal.tabIndex = 12;
 
+  divNom.id = "nom";
   divNom.append(labelNom);
   divNom.append(inputNom);
 
+  divEmail.id = "email";
   divEmail.append(labelEmail);
   divEmail.append(inputEmail);
 
+  divMessage.id = "message";
   divMessage.append(labelMessage);
   divMessage.append(textAreaMessage);
 
@@ -98,7 +104,6 @@ const displayModal = () => {
       "Message : ": textAreaMessage.value,
     };
     logFormData(dataForm);
-    closeContactModal();
   });
 
   buttonSubmitFormContact.addEventListener("keyup", (ev) => {
@@ -111,7 +116,6 @@ const displayModal = () => {
         "Message : ": textAreaMessage.value,
       };
       logFormData(dataForm);
-      closeContactModal();
     }
   });
 
@@ -141,5 +145,17 @@ const logFormData = (dataForm) => {
  */
 const closeContactModal = () => {
   const modal = document.getElementById("contact_modal");
+  const labelPrenom = document.getElementById("prenom_form");
+  const inputPrenom = labelPrenom.nextElementSibling;
+  const divNom = document.getElementById("nom");
+  const divEmail = document.getElementById("email");
+  const divMessage = document.getElementById("message");
+
+  inputPrenom.value = "";
+
+  divNom.remove();
+  divEmail.remove();
+  divMessage.remove();
+
   modal.style.display = "none";
 };

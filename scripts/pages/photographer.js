@@ -135,13 +135,12 @@ const displayPhotographDetails = (photographData) => {
 };
 
 /**
- * Fonction pour afficher la galerie des medias du photograph
- * @param {*} medias
+ * Affiche la galerie des medias du photographe
+ * @param {Array} medias
  */
 const displayMediaGallery = (medias) => {
   //On créé la Galerie
   const photographGalleryDiv = document.querySelector("#photograph-gallery");
-  photographGalleryDiv.textContent = "";
 
   medias.map((media) => {
     const mediaGalleryModel = mediaGalleryFactory(media, medias);
