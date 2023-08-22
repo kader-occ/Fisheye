@@ -15,6 +15,7 @@ const mediaGalleryFactory = (media, medias) => {
     const mediaTitle = document.createElement("span");
     const mediaLikes = document.createElement("span");
 
+    article.id = "media-gallery-card";
     article.style.cursor = "pointer";
 
     if (media.image) {

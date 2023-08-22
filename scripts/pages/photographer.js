@@ -129,6 +129,13 @@ const displayPhotographDetails = (photographData) => {
   displayMediaGallery(mediaArr);
 
   selectFilter.onchange = () => {
+    const articles = document.querySelectorAll("#media-gallery-card");
+
+    if (articles) {
+      articles.forEach((article) => {
+        article.remove();
+      });
+    }
     mediaArr = filterMedias(selectFilter.value, photographData.medias);
     displayMediaGallery(mediaArr);
   };
