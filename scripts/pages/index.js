@@ -1,3 +1,5 @@
+import photographerFactory from "../factories/photographer.js";
+
 /**
  * Fonction récupere les données JSON des photographes
  * @returns void

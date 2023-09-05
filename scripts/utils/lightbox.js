@@ -1,9 +1,12 @@
+import { mediasPath } from "../pages/photographer.js";
+
 /**
  * Fonction Fermeture LightBox
  */
 const closeLightBox = () => {
   const lightBoxDiv = document.querySelector("#light-box");
   lightBoxDiv.remove();
+  document.onkeydown = null;
 };
 
 /**
@@ -23,6 +26,8 @@ const handleMediaToDisplay = (action, medias) => {
       return m.video === currentMediaFile;
     }
   });
+
+  let mediaToDisplay;
 
   const currentIndex = medias.indexOf(currentMedia);
 
@@ -75,7 +80,7 @@ const handleMediaToDisplay = (action, medias) => {
  * @param {Object} currentMedia
  * @param {Array} medias
  */
-const displayLightBox = (currentMedia, medias) => {
+export const displayLightBox = (currentMedia, medias) => {
   const body = document.querySelector("body");
   const lightBoxDiv = document.createElement("div");
   const btnNextMedia = document.createElement("button");
@@ -175,10 +180,10 @@ const displayLightBox = (currentMedia, medias) => {
   const checkKey = (ev) => {
     if (ev.keyCode == "37") {
       //Touche fleche gauche
-      handleMediaToDisplay("next", medias);
+      handleMediaToDisplay("prev", medias);
     } else if (ev.keyCode == "39") {
       //Touche fleche droite
-      handleMediaToDisplay("prev", medias);
+      handleMediaToDisplay("next", medias);
     }
   };
 

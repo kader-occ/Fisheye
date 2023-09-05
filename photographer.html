@@ -27,9 +27,7 @@
 
     <main id="main">
       <div class="photograph-header">
-        <button class="contact_button" onclick="displayModal()">
-          Contactez-moi
-        </button>
+        <button class="contact_button">Contactez-moi</button>
       </div>
     </main>
 
@@ -37,7 +35,7 @@
       <div class="modal">
         <header>
           <h2>Contactez-moi</h2>
-          <img src="assets/icons/close.svg" onclick="closeContactModal()" />
+          <img src="assets/icons/close.svg" />
         </header>
         <form>
           <div>
@@ -49,10 +47,13 @@
       </div>
     </div>
 
-    <script src="scripts/factories/mediaGalleryFactory.js"></script>
-    <script src="scripts/pages/photographer.js" async></script>
-    <script src="scripts/utils/medias.js" async></script>
-    <script src="scripts/utils/lightbox.js" async></script>
-    <script src="scripts/utils/contactForm.js" async></script>
+    <script
+      src="scripts/factories/mediaGalleryFactory.js"
+      type="module"
+    ></script>
+    <script src="scripts/pages/photographer.js" type="module" async></script>
+    <script src="scripts/utils/medias.js" type="module"></script>
+    <script src="scripts/utils/lightbox.js" type="module"></script>
+    <script src="scripts/utils/contactForm.js" type="module"></script>
   </body>
 </html>

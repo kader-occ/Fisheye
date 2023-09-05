@@ -1,7 +1,7 @@
 /**
  * Fonction Affiche Contact Form
  */
-const displayModal = () => {
+export const displayModal = (photographData) => {
   const contactModal = document.getElementById("contact_modal");
   contactModal.style.display = "block";
 
@@ -78,6 +78,10 @@ const displayModal = () => {
   //Tab12
   imgBtnCloseContactModal.setAttribute("alt", "Close contact modal");
   imgBtnCloseContactModal.tabIndex = 12;
+  imgBtnCloseContactModal.addEventListener("click", (ev) => {
+    ev.preventDefault();
+    closeContactModal();
+  });
 
   divNom.id = "nom";
   divNom.append(labelNom);
@@ -153,9 +157,9 @@ const closeContactModal = () => {
 
   inputPrenom.value = "";
 
-  divNom.remove();
-  divEmail.remove();
-  divMessage.remove();
+  if (divNom) divNom.remove();
+  if (divEmail) divEmail.remove();
+  if (divMessage) divMessage.remove();
 
   modal.style.display = "none";
 };

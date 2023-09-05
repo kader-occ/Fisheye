@@ -1,10 +1,14 @@
+import { mediasPath } from "../pages/photographer.js";
+import { displayLightBox } from "../utils/lightbox.js";
+import { updateLikes } from "../utils/medias.js";
+
 /**
  * Fonction Factory
  * @param {Object} media
  * @param {Array} medias
  * @returns
  */
-const mediaGalleryFactory = (media, medias) => {
+export const mediaGalleryFactory = (media, medias) => {
   /**
    * Fonction Factory pour créer une Card(Article) gallerie
    * @returnsHTMLElement

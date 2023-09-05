@@ -72,3 +72,5 @@ const photographerFactory = (data) => {
   };
   return { photograph, getUserCardDOM };
 };
+
+export default photographerFactory;

@@ -1,5 +1,5 @@
 //Fonction Filtre galerie
-const filterMedias = (filterVal, mediaArr) => {
+export const filterMedias = (filterVal, mediaArr) => {
   switch (filterVal) {
     case "Popularité":
       return mediaArr.sort((a, b) => {
@@ -19,7 +19,7 @@ const filterMedias = (filterVal, mediaArr) => {
 };
 
 //Fonction Update Likes
-const updateLikes = (media) => {
+export const updateLikes = (media) => {
   media.likes++;
   const likesDom = document.getElementById(`${media.id}`);
   const totalLikesDom = document.querySelector(".total-likes");

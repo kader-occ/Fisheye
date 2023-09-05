@@ -1,6 +1,10 @@
+import { filterMedias } from "../utils/medias.js";
+import { mediaGalleryFactory } from "../factories/mediaGalleryFactory.js";
+import { displayModal } from "../utils/contactForm.js";
+
 //On récupère le photograph et ces médias dans la Session et créé les chemin des dossiers!
 const photographData = JSON.parse(localStorage.getItem("_photographSession"));
-const mediasPath = `assets/photographers/${photographData.name
+export const mediasPath = `assets/photographers/${photographData.name
   .split(" ")
   .join("-")}/`;
 const portraitPath = `assets/photographers/Photographers_ID_Photos/${photographData.portrait}`;
@@ -47,6 +51,10 @@ const displayPhotographDetails = (photographData) => {
   contactBtn.setAttribute("alt", "Contact me");
   //Tab4
   contactBtn.tabIndex = 0;
+  contactBtn.addEventListener("click", (ev) => {
+    ev.preventDefault();
+    displayModal(photographData);
+  });
 
   //On récupere l'image du photographe
   photographImg.setAttribute("src", portraitPath);
@@ -124,6 +132,8 @@ const displayPhotographDetails = (photographData) => {
 
   selectFilter.className = "select-filter";
   photographFilterDiv.append(selectFilter);
+
+  let mediaArr = [];
 
   mediaArr = filterMedias("", photographData.medias);
   displayMediaGallery(mediaArr);
