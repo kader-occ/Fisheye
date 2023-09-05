@@ -76,9 +76,14 @@ const displayPhotographDetails = (photographData) => {
   });
 
   totalLikes.textContent = totalLikesCount.slice(-1)[0];
+  totalLikes.setAttribute(
+    "aria-label",
+    totalLikesCount.slice(-1)[0] + " likes"
+  );
 
   price.className = "price";
   price.textContent = photographData.price;
+  price.setAttribute("aria-label", photographData.price + " euros par jour");
 
   totalLikesAndPrice.append(totalLikes);
   totalLikesAndPrice.append(price);
@@ -114,7 +119,7 @@ const displayPhotographDetails = (photographData) => {
   filterLabel.tabIndex = 0;
 
   const selectFilter = document.createElement("select");
-  selectFilter.setAttribute("aria-label", "Order by");
+  selectFilter.setAttribute("aria-label", "Filtrer la gallerie des medias par");
   //Tab8
   selectFilter.tabIndex = 0;
 

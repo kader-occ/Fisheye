@@ -4,19 +4,16 @@
 export const displayModal = (photographData) => {
   const contactModal = document.getElementById("contact_modal");
   contactModal.style.display = "block";
+  contactModal.setAttribute("aria-hidden", true);
 
   //Tab1
   contactModal.role = "dialog";
   contactModal.tabIndex = 1;
-  contactModal.setAttribute(
-    "aria-label",
-    "Contactez moi " + photographData.name
-  );
-  contactModal.setAttribute("aria-hidden", "true");
   contactModal.focus();
 
-  const h2 = document.querySelector("h2");
-  const imgBtnCloseContactModal = h2.nextElementSibling;
+  const form = document.querySelector("form");
+  const titleForm = document.querySelector("h2");
+  const imgBtnCloseContactModal = titleForm.nextElementSibling;
   const labelPrenom = document.getElementsByTagName("label")[1];
   const inputPrenom = document.querySelector("input");
   const divNom = document.createElement("div");
@@ -29,16 +26,18 @@ export const displayModal = (photographData) => {
   const inputNom = document.createElement("input");
   const inputEmail = document.createElement("input");
   const textAreaMessage = document.createElement("textarea");
+  const spanLastFocus = document.createElement("span");
 
-  h2.textContent = "Contactez moi " + photographData.name;
+  titleForm.textContent = "Contacter " + photographData.name;
   //Tab2
-  h2.tabIndex = 2;
+  titleForm.tabIndex = 2;
 
   labelPrenom.id = "prenom_form";
   //Tab3
   labelPrenom.tabIndex = 3;
   inputPrenom.id = "prenom_form";
-  inputPrenom.placeholder = "Votre prénom";
+  inputPrenom.placeholder = "Veuillez saisir votre prénom";
+  inputPrenom.required = true;
   //Tab4
   inputPrenom.tabIndex = 4;
 
@@ -47,8 +46,8 @@ export const displayModal = (photographData) => {
   //Tab5
   labelNom.tabIndex = 5;
   inputNom.id = "nom_form";
-  inputNom.placeholder = "Votre nom";
-  inputEmail.required = true;
+  inputNom.placeholder = "Veuillez saisir votre nom";
+  inputNom.required = true;
   //Tab6
   inputNom.tabIndex = 6;
 
@@ -57,17 +56,18 @@ export const displayModal = (photographData) => {
   //Tab7
   labelEmail.tabIndex = 7;
   inputEmail.id = "email_form";
-  inputEmail.placeholder = "Votre email";
+  inputEmail.placeholder = "Veuillez saisir votre email";
   inputEmail.required = true;
   //Tab8
   inputEmail.tabIndex = 8;
 
   labelMessage.textContent = "Message";
-  labelMessage.id = "messafe_form";
+  labelMessage.id = "message_form";
   //Tab9
   labelMessage.tabIndex = 9;
   textAreaMessage.id = "message_form";
-  textAreaMessage.placeholder = "Votre message";
+  textAreaMessage.placeholder = "Veuillez saisir votre message";
+  textAreaMessage.setAttribute("aria-label", "Veuillez saisir votre message");
   textAreaMessage.required = true;
   //Tab10
   textAreaMessage.tabIndex = 10;
@@ -76,12 +76,18 @@ export const displayModal = (photographData) => {
   buttonSubmitFormContact.tabIndex = 11;
 
   //Tab12
-  imgBtnCloseContactModal.setAttribute("alt", "Close contact modal");
+  imgBtnCloseContactModal.setAttribute(
+    "alt",
+    "Fermer le formulaire de contact"
+  );
   imgBtnCloseContactModal.tabIndex = 12;
   imgBtnCloseContactModal.addEventListener("click", (ev) => {
     ev.preventDefault();
     closeContactModal();
   });
+
+  //Tab 13 Dernier focus
+  spanLastFocus.tabIndex = 13;
 
   divNom.id = "nom";
   divNom.append(labelNom);
@@ -98,29 +104,19 @@ export const displayModal = (photographData) => {
   buttonSubmitFormContact.before(divNom);
   buttonSubmitFormContact.before(divEmail);
   buttonSubmitFormContact.before(divMessage);
+  titleForm.after(spanLastFocus);
 
-  buttonSubmitFormContact.addEventListener("click", (ev) => {
+  buttonSubmitFormContact.setAttribute("aria-label", "Soumettre le formulaire");
+
+  form.addEventListener("submit", (ev) => {
     ev.preventDefault();
     const dataForm = {
-      "Prénom : ": inputPrenom.value,
-      "Nom : ": inputNom.value,
-      "Email : ": inputEmail.value,
-      "Message : ": textAreaMessage.value,
+      "Prénom : ": form.inputPrenom.value,
+      "Nom : ": form.inputNom.value,
+      "Email : ": form.inputEmail.value,
+      "Message : ": form.textAreaMessage.value,
     };
     logFormData(dataForm);
-  });
-
-  buttonSubmitFormContact.addEventListener("keyup", (ev) => {
-    ev.preventDefault();
-    if (ev.key === "Enter") {
-      const dataForm = {
-        "Prénom : ": inputPrenom.value,
-        "Nom : ": inputNom.value,
-        "Email : ": inputEmail.value,
-        "Message : ": textAreaMessage.value,
-      };
-      logFormData(dataForm);
-    }
   });
 
   imgBtnCloseContactModal.addEventListener("keypress", (ev) => {
@@ -132,6 +128,12 @@ export const displayModal = (photographData) => {
   contactModal.addEventListener("keyup", (ev) => {
     if (ev.key === "Escape") {
       closeContactModal();
+    }
+    if (ev.key === "Tab") {
+      console.log(document.activeElement.tabIndex);
+      if (document.activeElement.tabIndex === 13) {
+        contactModal.focus();
+      }
     }
   });
 };

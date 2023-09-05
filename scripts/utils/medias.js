@@ -24,5 +24,6 @@ export const updateLikes = (media) => {
   const likesDom = document.getElementById(`${media.id}`);
   const totalLikesDom = document.querySelector(".total-likes");
   likesDom.textContent = media.likes;
+  likesDom.setAttribute("aria-label", media.likes + " likes");
   parseInt(totalLikesDom.textContent++);
 };

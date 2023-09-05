@@ -4,9 +4,9 @@ import { mediasPath } from "../pages/photographer.js";
  * Fonction Fermeture LightBox
  */
 const closeLightBox = () => {
-  const lightBoxDiv = document.querySelector("#light-box");
-  lightBoxDiv.remove();
   document.onkeydown = null;
+  const lightBoxDiv = document.querySelector("#light-box");
+  if (lightBoxDiv) lightBoxDiv.remove();
 };
 
 /**
@@ -87,18 +87,14 @@ export const displayLightBox = (currentMedia, medias) => {
   const btnPrevMedia = document.createElement("button");
   const btnCloseLightBox = document.createElement("button");
   const titleMedia = document.createElement("p");
+  const spanLastFocus = document.createElement("span");
+
+  lightBoxDiv.setAttribute("aria-hidden", true);
+  lightBoxDiv.role = "dialog";
 
   btnCloseLightBox.className = "btn btn-close-light-box";
-  btnCloseLightBox.setAttribute("alt", "Fermer la light box");
-  btnCloseLightBox.setAttribute("title", "Fermer la light box");
-
   btnNextMedia.className = "btn btn-light-box-navigation btn-next-media";
-  btnNextMedia.setAttribute("alt", "Media suivant");
-  btnNextMedia.setAttribute("title", "Media suivant");
-
   btnPrevMedia.className = "btn btn-light-box-navigation btn-prev-media";
-  btnPrevMedia.setAttribute("alt", "Media précedent");
-  btnPrevMedia.setAttribute("title", "Media précedent");
 
   btnCloseLightBox.textContent = "X";
 
@@ -122,7 +118,6 @@ export const displayLightBox = (currentMedia, medias) => {
     video.ariaLabel = currentMedia.title;
     video.controls = false;
     video.autoplay = true;
-    video.tabIndex = -1;
     //Tab2
     video.tabIndex = 2;
     lightBoxDiv.append(video);
@@ -167,13 +162,22 @@ export const displayLightBox = (currentMedia, medias) => {
     }
   });
 
+  //Tab 7 Dernier focus
+  spanLastFocus.tabIndex = 7;
+
   lightBoxDiv.append(btnCloseLightBox);
   lightBoxDiv.append(btnNextMedia);
   lightBoxDiv.append(btnPrevMedia);
+  lightBoxDiv.append(spanLastFocus);
 
   lightBoxDiv.addEventListener("keyup", (ev) => {
     if (ev.key === "Escape") {
       closeLightBox();
+    }
+    if (ev.key === "Tab") {
+      if (document.activeElement.tabIndex == 7) {
+        lightBoxDiv.focus();
+      }
     }
   });
 

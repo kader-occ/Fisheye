@@ -59,7 +59,7 @@ export const mediaGalleryFactory = (media, medias) => {
     //Tab10
     mediaTitle.tabIndex = 0;
 
-    mediaLikes.setAttribute("aria-label", "likes");
+    mediaLikes.setAttribute("aria-label", media.likes + " likes");
     mediaLikes.id = media.id;
     mediaLikes.className = "media-likes icon-heart";
     mediaLikes.style.cursor = "pointer";

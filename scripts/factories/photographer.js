@@ -32,7 +32,6 @@ const photographerFactory = (data) => {
     //On récupere l'image du photographe
     photographImg.setAttribute("src", pictureUrl);
     photographImg.setAttribute("alt", photograph.name);
-    photographImg.setAttribute("title", photograph.name);
 
     //On récupere le nom du photographe
     photographName.textContent = photograph.name;
