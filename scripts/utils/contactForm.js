@@ -31,7 +31,7 @@ export const displayModal = (photographData) => {
   //Tab2
   titleForm.tabIndex = 2;
 
-  labelPrenom.id = "prenom_form";
+  labelPrenom.setAttribute("for", "prenom_form");
   //Tab3
   labelPrenom.tabIndex = 3;
   inputPrenom.id = "prenom_form";
@@ -41,7 +41,7 @@ export const displayModal = (photographData) => {
   inputPrenom.tabIndex = 4;
 
   labelNom.textContent = "Nom";
-  labelNom.id = "nom_form";
+  labelNom.setAttribute("for", "nom_form");
   //Tab5
   labelNom.tabIndex = 5;
   inputNom.id = "nom_form";
@@ -51,7 +51,7 @@ export const displayModal = (photographData) => {
   inputNom.tabIndex = 6;
 
   labelEmail.textContent = "Email";
-  labelEmail.id = "email_form";
+  labelEmail.setAttribute("for", "email_form");
   //Tab7
   labelEmail.tabIndex = 7;
   inputEmail.id = "email_form";
@@ -61,7 +61,7 @@ export const displayModal = (photographData) => {
   inputEmail.tabIndex = 8;
 
   labelMessage.textContent = "Message";
-  labelMessage.id = "message_form";
+  labelMessage.setAttribute("for", "message_form");
   //Tab9
   labelMessage.tabIndex = 9;
   textAreaMessage.id = "message_form";
