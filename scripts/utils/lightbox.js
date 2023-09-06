@@ -89,7 +89,6 @@ export const displayLightBox = (currentMedia, medias) => {
   const titleMedia = document.createElement("p");
   const spanLastFocus = document.createElement("span");
 
-  lightBoxDiv.setAttribute("aria-hidden", true);
   lightBoxDiv.role = "dialog";
 
   btnCloseLightBox.className = "btn btn-close-light-box";
@@ -145,16 +144,16 @@ export const displayLightBox = (currentMedia, medias) => {
 
   //Tab4
   btnPrevMedia.tabIndex = 4;
-  btnPrevMedia.ariaLabel = "Image précedente";
+  btnPrevMedia.ariaLabel = "Aller vers image précedente";
   btnPrevMedia.onclick = () => handleMediaToDisplay("prev", medias);
   //Tab5
   btnNextMedia.tabIndex = 5;
-  btnNextMedia.ariaLabel = "Image suivante";
+  btnNextMedia.ariaLabel = "Aller vers image suivante";
   btnNextMedia.onclick = () => handleMediaToDisplay("next", medias);
 
   //Tab6
   btnCloseLightBox.tabIndex = 6;
-  btnCloseLightBox.ariaLabel = "Fermer la lightbox";
+  btnCloseLightBox.ariaLabel = "Fermer la boite de dialogue";
   btnCloseLightBox.onclick = () => closeLightBox();
   btnCloseLightBox.addEventListener("keypress", (ev) => {
     if (ev.key === "Enter") {

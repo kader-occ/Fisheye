@@ -4,7 +4,6 @@
 export const displayModal = (photographData) => {
   const contactModal = document.getElementById("contact_modal");
   contactModal.style.display = "block";
-  contactModal.setAttribute("aria-hidden", true);
 
   //Tab1
   contactModal.role = "dialog";

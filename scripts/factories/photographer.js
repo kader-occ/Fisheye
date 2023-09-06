@@ -35,6 +35,7 @@ const photographerFactory = (data) => {
 
     //On récupere le nom du photographe
     photographName.textContent = photograph.name;
+    photographName.ariaHidden = true;
 
     //On récupere la ville et pays du photographe
     photographLocation.className = "location";
