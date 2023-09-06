@@ -77,7 +77,7 @@ export const displayModal = (photographData) => {
   //Tab12
   imgBtnCloseContactModal.setAttribute(
     "alt",
-    "Fermer le formulaire de contact"
+    "Fermer la boite de dialogue du formulaire de contact"
   );
   imgBtnCloseContactModal.tabIndex = 12;
   imgBtnCloseContactModal.addEventListener("click", (ev) => {

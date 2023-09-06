@@ -153,7 +153,8 @@ export const displayLightBox = (currentMedia, medias) => {
 
   //Tab6
   btnCloseLightBox.tabIndex = 6;
-  btnCloseLightBox.ariaLabel = "Fermer la boite de dialogue";
+  btnCloseLightBox.ariaLabel =
+    "Fermer la boite de dialogue de la gallerie media";
   btnCloseLightBox.onclick = () => closeLightBox();
   btnCloseLightBox.addEventListener("keypress", (ev) => {
     if (ev.key === "Enter") {
