@@ -156,7 +156,7 @@ const closeContactModal = () => {
   const divEmail = document.getElementById("email");
   const divMessage = document.getElementById("message");
 
-  inputPrenom.value = "";
+  if (inputPrenom) inputPrenom.value = "";
 
   if (divNom) divNom.remove();
   if (divEmail) divEmail.remove();
