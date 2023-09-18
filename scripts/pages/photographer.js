@@ -48,7 +48,6 @@ const displayPhotographDetails = (photographData) => {
   //Tab3
   photographLocation.tabIndex = 0;
 
-  contactBtn.setAttribute("alt", "Contact me");
   //Tab4
   contactBtn.tabIndex = 0;
   contactBtn.addEventListener("click", (ev) => {
@@ -113,13 +112,16 @@ const displayPhotographDetails = (photographData) => {
 
   const filterLabel = document.createElement("label");
 
+  filterLabel.id = "filter-label";
   filterLabel.className = "filter-label";
   filterLabel.textContent = "Trier par";
+  filterLabel.ariaHidden = true;
   //Tab7
   filterLabel.tabIndex = 0;
 
   const selectFilter = document.createElement("select");
-  selectFilter.setAttribute("aria-label", "Filtrer la gallerie des medias par");
+  selectFilter.id = "filter-label";
+  selectFilter.setAttribute("aria-label", "Trier par");
   //Tab8
   selectFilter.tabIndex = 0;
 
