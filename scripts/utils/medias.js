@@ -20,10 +20,15 @@ export const filterMedias = (filterVal, mediaArr) => {
 
 //Fonction Update Likes
 export const updateLikes = (media) => {
-  media.likes++;
   const likesDom = document.getElementById(`${media.id}`);
   const totalLikesDom = document.querySelector(".total-likes");
-  likesDom.textContent = media.likes;
-  likesDom.setAttribute("aria-label", media.likes + " likes");
-  parseInt(totalLikesDom.textContent++);
+
+  //Si isLiked est false on incrémente
+  if (!media.isLiked) {
+    let likes = media.likes + 1;
+    likesDom.textContent = likes;
+    likesDom.setAttribute("aria-label", likes + " likes");
+    totalLikesDom.textContent = parseInt(totalLikesDom.textContent) + 1;
+    media.isLiked = true;
+  }
 };

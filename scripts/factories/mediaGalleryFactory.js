@@ -68,6 +68,7 @@ export const mediaGalleryFactory = (media, medias) => {
     mediaLikes.tabIndex = 0;
 
     mediaLikes.onclick = () => updateLikes(media);
+
     mediaLikes.addEventListener("keypress", (ev) => {
       if (ev.key === "Enter") {
         updateLikes(media);
